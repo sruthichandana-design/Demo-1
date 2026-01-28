@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LUMIÈRE - Fine Jewelry</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600&family=Montserrat:wght@200;300;400&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --gold: #D4AF37;
+            --deep-navy: #0A1628;
+            --cream: #FAF8F3;
+            --silver: #C0C0C0;
+            --rose-gold: #B76E79;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: var(--cream);
+            color: var(--deep-navy);
+            overflow-x: hidden;
+        }
+
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 2rem 4rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            background: linear-gradient(to bottom, var(--cream) 0%, rgba(250, 248, 243, 0.95) 70%, transparent 100%);
+            animation: slideDown 0.8s ease-out;
+        }
+
+        @keyframes slideDown {
+            from {
+                transform: translateY(-100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .logo {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2.5rem;
+            font-weight: 300;
+            letter-spacing: 0.3rem;
+            color: var(--deep-navy);
+        }
+
+        nav {
+            display: flex;
+            gap: 3rem;
+            font-size: 0.85rem;
+            letter-spacing: 0.15rem;
+            text-transform: uppercase;
+            font-weight: 300;
+        }
+
+        nav a {
+            color: var(--deep-navy);
+            text-decoration: none;
+            position: relative;
+            transition: color 0.3s ease;
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background: var(--gold);
+            transition: width 0.3s ease;
+        }
+
+        nav a:hover {
+            color: var(--gold);
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            background: radial-gradient(ellipse at center, var(--cream) 0%, #F5F1E8 100%);
+        }
+
+        .hero-content {
+            text-align: center;
+            z-index: 2;
+            animation: fadeInUp 1.2s ease-out 0.3s both;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero h1 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 5rem;
+            font-weight: 300;
+            line-height: 1.2;
+            margin-bottom: 1.5rem;
+            letter-spacing: 0.05rem;
+        }
+
+        .hero-tagline {
+            font-size: 1rem;
+            letter-spacing: 0.25rem;
+            text-transform: uppercase;
+            font-weight: 200;
+            margin-bottom: 3rem;
+            color: #666;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 1rem 3rem;
+            background: var(--deep-navy);
+            color: var(--cream);
+            text-decoration: none;
+            letter-spacing: 0.2rem;
+            text-transform: uppercase;
+            font-size: 0.75rem;
+            font-weight: 300;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.4s ease;
+        }
+
+        .cta-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: var(--gold);
+            transition: left 0.4s ease;
+        }
+
+        .cta-button span {
+            position: relative;
+            z-index: 1;
+        }
+
+        .cta-button:hover::before {
+            left: 0;
+        }
+
+        .decorative-circle {
+            position: absolute;
+            border: 1px solid var(--gold);
+            border-radius: 50%;
+            opacity: 0.3;
+            animation: rotate 30s linear infinite;
+        }
+
+        .circle-1 {
+            width: 400px;
+            height: 400px;
+            top: 20%;
+            left: 10%;
+            animation-delay: 0s;
+        }
+
+        .circle-2 {
+            width: 300px;
+            height: 300px;
+            bottom: 15%;
+            right: 15%;
+            animation-delay: -10s;
+        }
+
+        @keyframes rotate {
+            from {
+                transform: rotate(0deg);
+            }
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        .collection-preview {
+            padding: 8rem 4rem;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 3rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .collection-item {
+            position: relative;
+            overflow: hidden;
+            aspect-ratio: 3/4;
+            background: var(--deep-navy);
+            cursor: pointer;
+            animation: fadeIn 1s ease-out both;
+        }
+
+        .collection-item:nth-child(1) { animation-delay: 0.1s; }
+        .collection-item:nth-child(2) { animation-delay: 0.2s; }
+        .collection-item:nth-child(3) { animation-delay: 0.3s; }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: scale(0.95);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .collection-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, var(--gold) 0%, transparent 100%);
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+
+        .collection-item:hover::before {
+            opacity: 0.4;
+        }
+
+        .collection-item-content {
+            position: absolute;
+            bottom: 2rem;
+            left: 2rem;
+            color: var(--cream);
+            transform: translateY(20px);
+            opacity: 0;
+            transition: all 0.5s ease;
+        }
+
+        .collection-item:hover .collection-item-content {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .collection-item h3 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2rem;
+            font-weight: 300;
+            margin-bottom: 0.5rem;
+        }
+
+        .collection-item p {
+            font-size: 0.85rem;
+            letter-spacing: 0.15rem;
+            text-transform: uppercase;
+            font-weight: 200;
+        }
+
+        .shimmer {
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(
+                45deg,
+                transparent 30%,
+                rgba(255, 255, 255, 0.1) 50%,
+                transparent 70%
+            );
+            animation: shimmer 8s infinite;
+        }
+
+        @keyframes shimmer {
+            0% {
+                transform: translateX(-100%) translateY(-100%) rotate(45deg);
+            }
+            100% {
+                transform: translateX(100%) translateY(100%) rotate(45deg);
+            }
+        }
+
+        footer {
+            text-align: center;
+            padding: 4rem 2rem;
+            font-size: 0.75rem;
+            letter-spacing: 0.15rem;
+            text-transform: uppercase;
+            color: #999;
+            border-top: 1px solid rgba(212, 175, 55, 0.2);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">LUMIÈRE</div>
+        <nav>
+            <a href="#collections">Collections</a>
+            <a href="#about">About</a>
+            <a href="#atelier">Atelier</a>
+            <a href="#contact">Contact</a>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <div class="decorative-circle circle-1"></div>
+        <div class="decorative-circle circle-2"></div>
+        <div class="hero-content">
+            <h1>Timeless Elegance<br>Crafted in Gold</h1>
+            <p class="hero-tagline">Fine Jewelry Since 1892</p>
+            <a href="#collections" class="cta-button">
+                <span>Explore Collections</span>
+            </a>
+        </div>
+    </section>
+
+    <section class="collection-preview">
+        <div class="collection-item">
+            <div class="shimmer"></div>
+            <div class="collection-item-content">
+                <h3>Solitaire</h3>
+                <p>Diamond Rings</p>
+            </div>
+        </div>
+        <div class="collection-item">
+            <div class="shimmer"></div>
+            <div class="collection-item-content">
+                <h3>Heritage</h3>
+                <p>Vintage Collection</p>
+            </div>
+        </div>
+        <div class="collection-item">
+            <div class="shimmer"></div>
+            <div class="collection-item-content">
+                <h3>Éclat</h3>
+                <p>Modern Luxury</p>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        &copy; 2026 Lumière Fine Jewelry. All Rights Reserved.
+    </footer>
+</body>
+</html>
